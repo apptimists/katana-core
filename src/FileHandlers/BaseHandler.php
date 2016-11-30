@@ -4,7 +4,7 @@ namespace Katana\FileHandlers;
 
 use Katana\MarkdownFileBuilder;
 use Symfony\Component\Finder\SplFileInfo;
-use Illuminate\Filesystem\Filesystem;
+use Katana\Filesystem;
 use Illuminate\View\Factory;
 
 class BaseHandler
@@ -207,7 +207,7 @@ class BaseHandler
 
         $this->viewsData['currentUrlPath'] = ($path = str_replace(KATANA_PUBLIC_DIR, '', $this->directory)) ? $path : '/';
     }
-    
+
     /**
      * Normalize Windows file paths to UNIX style
      *

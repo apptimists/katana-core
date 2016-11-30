@@ -2,7 +2,7 @@
 
 namespace Katana;
 
-use Illuminate\Filesystem\Filesystem;
+use Katana\Filesystem;
 use Illuminate\View\Factory;
 
 class BlogPaginationBuilder

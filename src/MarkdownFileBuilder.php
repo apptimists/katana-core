@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Compilers\BladeCompiler;
 use Symfony\Component\Finder\SplFileInfo;
 use Illuminate\View\Engines\PhpEngine;
-use Illuminate\Filesystem\Filesystem;
+use Katana\Filesystem;
 use Illuminate\View\Factory;
 
 class MarkdownFileBuilder

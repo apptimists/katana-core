@@ -4,7 +4,7 @@ namespace Katana;
 
 use Symfony\Component\Finder\SplFileInfo;
 use Katana\FileHandlers\BlogPostHandler;
-use Illuminate\Filesystem\Filesystem;
+use Katana\Filesystem;
 use Katana\FileHandlers\BaseHandler;
 use Illuminate\View\Factory;
 use Illuminate\Support\Str;
@@ -112,7 +112,7 @@ class SiteBuilder
 
         $this->buildViewsData();
 
-        $this->filesystem->cleanDirectory(KATANA_PUBLIC_DIR);
+        $this->filesystem->cleanDirectoryIgnoreDirectory(KATANA_PUBLIC_DIR, '.git');
 
         if ($this->forceBuild) {
             $this->filesystem->cleanDirectory(KATANA_CACHE_DIR);

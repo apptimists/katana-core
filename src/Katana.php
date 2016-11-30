@@ -6,7 +6,7 @@ use Symfony\Component\Console\Application as SymfonyConsole;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Engines\CompilerEngine;
 use Illuminate\View\Engines\EngineResolver;
-use Illuminate\Filesystem\Filesystem;
+use Katana\Filesystem;
 use Illuminate\View\FileViewFinder;
 use Illuminate\Events\Dispatcher;
 use Katana\Commands\BuildCommand;
