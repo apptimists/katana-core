@@ -124,6 +124,7 @@ class SiteBuilder
             $this->handleBlogPostsFiles($blogPostsFiles);
             $this->buildBlogPagination();
             $this->buildRSSFeed();
+            $this->buildSitemap();
         }
     }
 
@@ -260,6 +261,22 @@ class SiteBuilder
     private function buildRSSFeed()
     {
         $builder = new RSSFeedBuilder(
+            $this->filesystem,
+            $this->viewFactory,
+            $this->viewsData
+        );
+
+        $builder->build();
+    }
+
+    /**
+     * Build the blog sitemap.
+     *
+     * @return void
+     */
+    private function buildSitemap()
+    {
+        $builder = new SitemapBuilder(
             $this->filesystem,
             $this->viewFactory,
             $this->viewsData
