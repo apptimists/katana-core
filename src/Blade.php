@@ -61,7 +61,7 @@ class Blade
 
             $trailingSlash = ! str_contains($expression, '.') ? '/' : '';
 
-            return "<?php echo str_replace(['///', '//'], '/', \$base_url.'/'.trim({$expression}, '/').'{$trailingSlash}');  ?>";
+            return "<?php echo \$base_url.'/'.trim({$expression}, '/'.'{$trailingSlash}');  ?>";
         });
     }
 }
