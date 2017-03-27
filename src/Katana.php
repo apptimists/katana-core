@@ -10,6 +10,7 @@ use Katana\Filesystem;
 use Illuminate\View\FileViewFinder;
 use Illuminate\Events\Dispatcher;
 use Katana\Commands\BuildCommand;
+use Katana\Commands\PostCommand;
 use Illuminate\View\Factory;
 
 class Katana
@@ -19,21 +20,21 @@ class Katana
      *
      * @var SymfonyConsole
      */
-    private $application;
+    protected $application;
 
     /**
      * The view factory instance.
      *
      * @var Factory
      */
-    private $viewFactory;
+    protected $viewFactory;
 
     /**
      * The file system instance.
      *
      * @var Filesystem
      */
-    private $filesystem;
+    protected $filesystem;
 
     /**
      * Katana constructor.
@@ -68,10 +69,11 @@ class Katana
      *
      * @return void
      */
-    private function registerCommands()
+    protected function registerCommands()
     {
         $this->application->addCommands([
-            new BuildCommand($this->viewFactory, $this->filesystem)
+            new BuildCommand($this->viewFactory, $this->filesystem),
+            new PostCommand($this->viewFactory, $this->filesystem)
         ]);
     }
 
@@ -80,7 +82,7 @@ class Katana
      *
      * @return Factory
      */
-    private function createViewFactory()
+    protected function createViewFactory()
     {
         $resolver = new EngineResolver();
 
@@ -113,7 +115,7 @@ class Katana
      *
      * @return BladeCompiler
      */
-    private function createBladeCompiler()
+    protected function createBladeCompiler()
     {
         if (! $this->filesystem->isDirectory(KATANA_CACHE_DIR)) {
             $this->filesystem->makeDirectory(KATANA_CACHE_DIR);
@@ -131,7 +133,7 @@ class Katana
      *
      * @return void
      */
-    private function registerConstants()
+    protected function registerConstants()
     {
         // A place to save Blade's cached compilations.
         define('KATANA_CACHE_DIR', getcwd().'/_cache');
